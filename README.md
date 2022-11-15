@@ -15,7 +15,7 @@ User follows the prompts and is guided through the password generation process, 
 ![App Screenshot](./assets/images/PassGen.png)
 
 ## Link
-
+(<https://parkercf.github.io/Password-Generator/>)
 
 ## Features
 
