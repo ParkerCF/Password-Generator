@@ -5,7 +5,6 @@ var number = "0123456789";
 var symbol = "!#$%&\()*+,-./:;<=>?@^[\\]^_`{|}~";
 
 
-
 var upperCaseArr = upperCase.split("");
 var lowerCaseArr = lowerCase.split("");
 var numberArr = number.split("");
