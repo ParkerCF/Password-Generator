@@ -58,10 +58,10 @@ function getPasswordOptions() {
   // user input
   var passwordOptions = {
     length: length,
-    symbol: hasSpecialCharacters,
-    number: hasNumericCharacters,
-    lower: hasLowerCasedCharacters,
-    upper: hasUpperCasedCharacters,
+    hasSpecialCharacter: hasSpecialCharacters,
+    hasNumericCharacters: hasNumericCharacters,
+    hasLowerCharacters: hasLowerCasedCharacters,
+    hasUpperCasedCharacters: hasUpperCasedCharacters,
   };
 
   return passwordOptions;
@@ -83,7 +83,7 @@ function generatePassword(lower, upper, number, symbol, length) {
 	const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
 	
 	// create a loop
-	for(let i=0; i<length; i+=typesCount) {
+	for(let i=0; i<options.length; i+=typesCount) {
 		typesArr.forEach(type => {
 			const funcName = Object.keys(type)[0];
 			generatedPassword += randomFunc[funcName]();
@@ -96,18 +96,20 @@ function generatePassword(lower, upper, number, symbol, length) {
 }
 
 
-// Functions for generating random letters, numbers, and sepcial characters/symbols
+// Function for generating random letters, numbers, and sepcial characters/symbols
+
+const getCharacter = [
 function getRandonmLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97)
-}
+},
 
 function getRandomUpper() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65)
-}
+},
 
 function getRandomNumber() {
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48)
-}
+},
 
 function getRandomSymbol() {
   var specialCharacters = [
@@ -134,7 +136,8 @@ function getRandomSymbol() {
     '-',
     '_',
     '.',
-  ];
+  ]
+]
   
   return specialCharacters[Math.floor(Math.random() * specialCharacters.length)]
 }
