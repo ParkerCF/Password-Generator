@@ -58,10 +58,10 @@ function getPasswordOptions() {
   // user input
   var passwordOptions = {
     length: length,
-    hasSpecialCharacters: hasSpecialCharacters,
-    hasNumericCharacters: hasNumericCharacters,
-    hasLowerCasedCharacters: hasLowerCasedCharacters,
-    hasUpperCasedCharacters: hasUpperCasedCharacters,
+    symbol: hasSpecialCharacters,
+    number: hasNumericCharacters,
+    lower: hasLowerCasedCharacters,
+    upper: hasUpperCasedCharacters,
   };
 
   return passwordOptions;
@@ -74,17 +74,13 @@ const randomFunction = {
   upper: getRandomUpper,
   number: getRandomNumber,
   symbol: getRandomSymbol,
-};
+}
 
 function generatePassword(lower, upper, number, symbol, length) {
+  var options = getPasswordOptions()
 	let generatedPassword = '';
 	const typesCount = lower + upper + number + symbol;
 	const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
-	
-	// Doesn't have a selected type
-	if(typesCount === 0) {
-		return '';
-	}
 	
 	// create a loop
 	for(let i=0; i<length; i+=typesCount) {
@@ -149,7 +145,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(hasLowerCasedCharacters, hasUpperCasedCharacters, hasNumericCharacters, hasSpecialCharacters, length);
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
